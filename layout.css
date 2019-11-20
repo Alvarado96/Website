@@ -1,0 +1,27 @@
+h1 {
+	text-align: center;
+}
+
+form {
+	margin: 0 auto;
+	width: 300px
+}
+
+label{
+    display: inline-table;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: left;
+	
+}
+
+input {
+  float:none;
+}
+
+button {
+	text-align: bottom;
+	margin-left: 110px;
+	
+}
