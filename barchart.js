@@ -1,8 +1,8 @@
 function barChart(id, values){
 	var canvas = document.getElementById(id);
-	var gridScale = 5; // for the grid lines
+	var gridScale = 100; // for the grid lines
 	var padding = canvas.height * .20; // leave 20% for the bottom labels and white space
-	
+	//get the context
 	var ctx = canvas.getContext("2d");
 	var fontHeight = 12;
 	ctx.font = fontHeight + "px Arial";
@@ -17,7 +17,7 @@ function barChart(id, values){
 	
 	var gridValue = 0;
 	//draw the grid lines
-	while (gridValue <= canvas.height){
+	while (gridValue <= canvas.height + maxValue){
 		var gridY = canvasActualHeight * (1 - gridValue/maxValue) + (padding/2); //TODO
 		drawLine(ctx, 0, gridY, canvas.width, gridY, "black");
 		gridValue += gridScale;

@@ -1,4 +1,5 @@
-﻿
+﻿<?php session_start()
+?>
 <html>
 <head>
 <title>UTSA Book Club</title>
@@ -39,24 +40,28 @@
     margin-left:470px;
 	text-align: center;">
 <tr>
-<th>First</th>
-<th>Last</th>
-<th>IsAdmin</th>
-<th>username</th>
-<th>college</th>
-<th>Id</th>
-<th>date</th>
+
 <?php
-include_once('db.php');
+
+//include_once('validation.php');
 //function db_open($url, $db, $user, $pw)
-if($_COOKIE['username'] != NULL){
-$username = $_COOKIE['username'];
+if(isset($_SESSION['username'])){
+include_once('db.php');
+$username = $_SESSION['username'];
+
 $conn = db_open('easel2.fulgentcorp.com','fgd806', 'fgd806', 'Evlv3h7MzBF30ay967IS');
 
 $sql = "SELECT First, Last, IsAdmin, username, college, Id, date FROM Users WHERE username='$username'";
 
 $result = db_query($conn, $sql);
 $rows = db_num_rows($result);
+echo "<th>First</th>";
+echo "<th>Last</th>";
+echo "<th>IsAdmin</th>";
+echo "<th>username</th>";
+echo "<th>college</th>";
+echo "<th>Id</th>";
+echo "<th>date</th>";
 if($rows > 0){
 	while (($row = db_fetch($result)) != NULL) {
 		echo "<tr><td>" . $row["First"] . "</td><td>" . $row["Last"] . "</td><td>" . $row["IsAdmin"] . "</td><td>" . $row["username"] . "</td><td>" . $row["college"] . "</td><td>" . $row["Id"] . "</td><td>" . $row["date"] . "</td></tr>";
@@ -66,9 +71,8 @@ if($rows > 0){
 else {
 	echo "0 result";
 }
-}
-?>
-<?php 
+
+
 	$sql = "SELECT college from Users;";
       $result = db_query($conn, $sql);
 	  $rows = db_num_rows($result);
@@ -101,35 +105,37 @@ else {
 		}
 	}
 	  }
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<br>";
+	echo "<h3>Number of Members From Each College";
+}
 ?>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<h2> NUMBER OF MEMBERS IN EACH COLLEGE
+
+
 
 <br>
 <br>
 
 <canvas id="cnvs" width="650" height="400"></canvas>
 <script type="text/javascript">
-	barData = [{lbl: "Fine Arts", val: <?php echo $FineArts/100;?>}, {lbl: "Business", val: <?php echo $Business/$rows;?>}, {lbl: "Education", val: <?php echo $Education/$rows;?>}, {lbl: "Engineering", val: <?php echo $Engineering/$rows;?>}, {lbl: "Architecture", val: <?php echo $Architecture/$rows;?>}, {lbl: "Sciences", val: <?php echo $Sciences/$rows;?>}];
+	barData = [{lbl: "Fine Arts", val: <?php echo $FineArts;?>}, {lbl: "Business", val: <?php echo $Business;?>}, {lbl: "Education", val: <?php echo $Education;?>}, {lbl: "Engineering", val: <?php echo $Engineering;?>}, {lbl: "Architecture", val: <?php echo $Architecture;?>}, {lbl: "Sciences", val: <?php echo $Sciences;?>}];
 	barChart("cnvs", barData);
 </script>
 
